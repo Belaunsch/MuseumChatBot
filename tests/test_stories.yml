@@ -1,0 +1,235 @@
+# End-to-End Test Stories für den Museum Guide Chatbot
+# Diese Datei testet komplette Gesprächsverläufe
+
+version: "3.1"
+
+stories:
+
+# ===== KUNSTWERK-INFORMATION UND MUSEUMS-ÖFFNUNGSZEITEN =====
+
+- story: art information and museum hours
+  steps:
+  - intent: ask_artwork
+    user: |
+      Erzähl mir etwas über The Starry Night
+  - action: action_fetch_artwork
+  - intent: ask_opening_hours
+    user: |
+      Wann öffnet das MoMA heute?
+  - action: action_fetch_museum_info
+
+# ===== KÜNSTLER-BIOGRAFIE UND KUNSTWERK-DETAILS =====
+
+- story: artist biography and artwork details  
+  steps:
+  - intent: ask_artist
+    user: |
+      Wer war Vincent van Gogh?
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    user: |
+      Erzähl mir etwas über Wheat Field with Cypresses
+  - action: action_fetch_artwork
+
+# ===== MUSEUM-INFORMATIONEN KOMPLETT =====
+
+- story: complete museum information
+  steps:
+  - intent: ask_location
+    user: |
+      Wo befindet sich das Van Gogh Museum?
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    user: |
+      Wie teuer ist der Eintritt?
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    user: |
+      Und wie sind die Öffnungszeiten?
+  - action: action_fetch_museum_info
+
+# ===== BEGRÜSSUNG UND KUNSTWERK-ANFRAGE =====
+
+- story: greeting and artwork request
+  steps:
+  - intent: greet
+    user: |
+      Hallo
+  - action: utter_greet
+  - intent: ask_artwork
+    user: |
+      Kannst du mir etwas über Girl with a Pearl Earring erzählen?
+  - action: action_fetch_artwork
+  - intent: thanks
+    user: |
+      Danke
+  - action: utter_thanks
+
+# ===== KÜNSTLER-DETAILS UND FOLLOW-UP =====
+
+- story: artist details with follow up
+  steps:
+  - intent: ask_artist
+    user: |
+      Erzähl mir etwas über Pablo Picasso
+  - action: action_fetch_artist
+  - intent: ask_artist_bio
+    user: |
+      Wann wurde er geboren?
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    user: |
+      Was weißt du über Guernica?
+  - action: action_fetch_artwork
+
+# ===== MUSEUM-STANDORT UND PRAKTISCHE INFOS =====
+
+- story: museum location and practical info
+  steps:
+  - intent: ask_location
+    user: |
+      Adresse des Louvre?
+  - action: action_fetch_museum_info  
+  - intent: ask_opening_hours
+    user: |
+      Wann hat es heute geöffnet?
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    user: |
+      Was kostet der Eintritt?
+  - action: action_fetch_museum_info
+
+# ===== FALLBACK UND RECOVERY =====
+
+- story: fallback and recovery
+  steps:
+  - intent: nlu_fallback
+    user: |
+      xyz123 unverständlich
+  - action: action_default_fallback
+  - intent: ask_artwork
+    user: |
+      Okay, erzähl mir etwas über Die Nachtwache
+  - action: action_fetch_artwork
+
+# ===== BOT-CHALLENGE UND NORMALE KONVERSATION =====
+
+- story: bot challenge then normal conversation
+  steps:
+  - intent: bot_challenge
+    user: |
+      Bist du ein Bot?
+  - action: utter_bot_challenge
+  - intent: ask_artist
+    user: |
+      Wer war Leonardo da Vinci?
+  - action: action_fetch_artist
+  - intent: goodbye
+    user: |
+      Tschüss
+  - action: utter_goodbye
+
+# ===== KOMPLEXE KUNSTWERK-ANFRAGE =====
+
+- story: complex artwork inquiry
+  steps:
+  - intent: ask_artwork
+    user: |
+      Informationen über American Gothic bitte
+  - action: action_fetch_artwork
+  - intent: ask_artwork_details
+    user: |
+      Wer hat das gemalt?
+  - action: action_fetch_artwork
+  - intent: ask_artist
+    user: |
+      Erzähl mir mehr über diesen Künstler
+  - action: action_fetch_artist
+
+# ===== LANGE KONVERSATION MIT VERSCHIEDENEN THEMEN =====
+
+- story: long conversation multiple topics
+  steps:
+  - intent: greet
+    user: |
+      Guten Tag
+  - action: utter_greet
+  - intent: ask_artwork
+    user: |
+      Was weißt du über Der Schrei?
+  - action: action_fetch_artwork
+  - intent: ask_artist
+    user: |
+      Wer war Edvard Munch?
+  - action: action_fetch_artist
+  - intent: ask_museum_info
+    user: |
+      In welchem Museum kann ich das sehen?
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    user: |
+      Wann hat das Museum geöffnet?
+  - action: action_fetch_museum_info
+  - intent: thanks
+    user: |
+      Vielen Dank für die Hilfe
+  - action: utter_thanks
+  - intent: goodbye
+    user: |
+      Auf Wiedersehen
+  - action: utter_goodbye
+
+# ===== BESTÄTIGUNG UND VERNEINUNG =====
+
+- story: affirmation and denial flow
+  steps:
+  - intent: ask_artist
+    user: |
+      Informationen zu Claude Monet
+  - action: action_fetch_artist
+  - intent: affirm
+    user: |
+      Ja, das ist richtig
+  - action: utter_affirm
+  - intent: ask_artwork
+    user: |
+      Erzähl mir etwas über Water Lilies
+  - action: action_fetch_artwork
+  - intent: deny
+    user: |
+      Nein, das ist nicht das richtige Bild
+  - action: utter_deny
+
+# ===== MEHRERE MUSEEN VERGLEICHEN =====
+
+- story: compare multiple museums
+  steps:
+  - intent: ask_opening_hours
+    user: |
+      Öffnungszeiten Rijksmuseum?
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    user: |
+      Und das Van Gogh Museum?
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    user: |
+      Welches ist günstiger?
+  - action: action_fetch_museum_info
+
+# ===== DEUTSCHE MUSEUMS-ANFRAGEN =====
+
+- story: german museum requests
+  steps:
+  - intent: ask_opening_hours
+    user: |
+      Hamburger Bahnhof Öffnungszeiten heute?
+  - action: action_fetch_museum_info
+  - intent: ask_location
+    user: |
+      Wo ist das Kunsthistorische Museum Wien?
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    user: |
+      Was kostet der Eintritt in die Alte Pinakothek?
+  - action: action_fetch_museum_info

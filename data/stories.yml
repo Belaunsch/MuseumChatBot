@@ -1,0 +1,634 @@
+# Stories: Beispiel-Dialoge für das Training des Dialog-Managements - UMFANGREICH ERWEITERT
+# Diese Datei definiert realistische Gesprächsverläufe zwischen Nutzer und Bot
+# ERWEITERT: Komplexe Multi-Turn-Gespräche, Fehlerbehandlung, Kontextwechsel
+
+version: "3.1"
+
+stories:
+
+# ===== GRUNDLEGENDE KONVERSATIONS-FLOWS =====
+
+# Einfache Begrüßung und Abschied
+- story: simple greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Begrüßung mit anschließender Kunstwerk-Anfrage
+- story: greet then ask artwork
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "The Starry Night"
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# ===== KOMPLEXE MULTI-TURN KONVERSATIONS-FLOWS =====
+
+# Multi-Turn Kunstwerk-Diskussion
+- story: detailed artwork discussion
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Starry Night"
+  - action: action_fetch_artwork
+  - intent: ask_interpretation
+  - action: action_fetch_artwork
+  - intent: ask_art_technique
+  - action: action_fetch_art_info
+  - intent: ask_comparison
+    entities:
+    - artwork_name: "Café Terrace at Night"
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# Kunstrichtung erkunden
+- story: art movement exploration
+  steps:
+  - intent: ask_art_movement
+  - action: action_fetch_art_info
+  - intent: ask_artist
+    entities:
+    - artist_name: "Claude Monet"
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Water Lilies"
+  - action: action_fetch_artwork
+  - intent: ask_recommendation
+  - action: action_recommend_content
+
+# Künstler-Deep-Dive
+- story: artist deep dive
+  steps:
+  - intent: ask_artist
+    entities:
+    - artist_name: "Vincent van Gogh"
+  - action: action_fetch_artist
+  - intent: ask_art_technique
+  - action: action_fetch_art_info
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "The Starry Night"
+  - action: action_fetch_artwork
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Sunflowers"
+  - action: action_fetch_artwork
+  - intent: ask_interpretation
+  - action: action_fetch_artwork
+  - intent: ask_recommendation
+  - action: action_recommend_content
+
+# ===== EMOTIONALE UND PERSÖNLICHE GESPRÄCHE =====
+
+# Persönliche Vorlieben
+- story: personal preferences
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_recommendation
+  - action: action_recommend_content
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "The Scream"
+  - action: action_fetch_artwork
+  - intent: affirm
+  - action: utter_affirm
+  - intent: ask_comparison
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: ask_recommendation
+  - action: action_recommend_content
+
+# Emotionale Reaktion auf Kunst
+- story: emotional art reaction
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: ask_interpretation
+  - action: action_fetch_artwork
+  - intent: deny  # "Das gefällt mir nicht"
+  - action: utter_deny
+  - intent: ask_recommendation
+  - action: action_recommend_content
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Water Lilies"
+  - action: action_fetch_artwork
+  - intent: affirm  # "Das ist schön"
+  - action: utter_affirm
+
+# ===== LERN- UND BILDUNGS-FLOWS =====
+
+# Kunstgeschichte-Lektion
+- story: art history lesson
+  steps:
+  - intent: ask_art_history
+  - action: action_fetch_art_info
+  - intent: ask_time_period
+  - action: action_fetch_art_info
+  - intent: ask_artist
+    entities:
+    - artist_name: "Leonardo da Vinci"
+  - action: action_fetch_artist
+  - intent: ask_art_movement
+  - action: action_fetch_art_info
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# Technik-Exploration
+- story: technique exploration
+  steps:
+  - intent: ask_art_technique
+  - action: action_fetch_art_info
+  - intent: ask_artist
+    entities:
+    - artist_name: "Pablo Picasso"
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: ask_art_technique
+  - action: action_fetch_art_info
+  - intent: ask_comparison
+    entities:
+    - artist_name: "Salvador Dalí"
+  - action: action_fetch_artist
+
+# ===== MUSEUMS-BESUCH PLANUNG =====
+
+# Vollständige Besuchsplanung
+- story: complete visit planning
+  steps:
+  - intent: ask_museum_info
+    entities:
+    - museum_name: "Louvre"
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "Louvre"
+    - time_reference: "heute"
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    entities:
+    - museum_name: "Louvre"
+  - action: action_fetch_museum_info
+  - intent: ask_location
+    entities:
+    - museum_name: "Louvre"
+  - action: action_fetch_museum_info
+  - intent: ask_museum_services
+    entities:
+    - museum_name: "Louvre"
+  - action: action_fetch_museum_info
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# Museums-Service-Anfragen
+- story: museum services inquiry
+  steps:
+  - intent: ask_museum_services
+    entities:
+    - museum_name: "Van Gogh Museum"
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "Van Gogh Museum"
+  - action: action_fetch_museum_info
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Sunflowers"
+  - action: action_fetch_artwork
+  - intent: ask_location
+    entities:
+    - museum_name: "Van Gogh Museum"
+  - action: action_fetch_museum_info
+
+# ===== VERGLEICHS- UND ANALYSE-FLOWS =====
+
+# Künstler-Vergleich
+- story: artist comparison
+  steps:
+  - intent: ask_comparison
+    entities:
+    - artist_name: "Monet"
+    - artist_name: "Renoir"
+  - action: action_compare_artworks
+  - intent: ask_artist
+    entities:
+    - artist_name: "Claude Monet"
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Water Lilies"
+  - action: action_fetch_artwork
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Luncheon of the Boating Party"
+  - action: action_fetch_artwork
+  - intent: ask_art_movement
+  - action: action_fetch_art_info
+  - intent: ask_recommendation
+  - action: action_recommend_content
+
+# Stil-Analyse
+- story: style analysis
+  steps:
+  - intent: ask_art_movement
+  - action: action_fetch_art_info
+  - intent: ask_artist
+    entities:
+    - artist_name: "Pablo Picasso"
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Les Demoiselles d'Avignon"
+  - action: action_fetch_artwork
+  - intent: ask_comparison
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: ask_interpretation
+  - action: action_fetch_artwork
+
+# ===== UNTERBRECHUNGEN UND KONTEXTWECHSEL =====
+
+# Thema wechseln mitten im Gespräch
+- story: topic switch mid conversation
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+  - intent: ask_artist
+    entities:
+    - artist_name: "Van Gogh"  # Anderer Künstler
+  - action: action_fetch_artist
+  - intent: ask_museum_info
+    entities:
+    - museum_name: "MoMA"  # Anderes Museum
+  - action: action_fetch_museum_info
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Starry Night"
+  - action: action_fetch_artwork
+
+# Unterbrechung durch Bot-Challenge
+- story: interruption by bot challenge
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: ask_interpretation
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# ===== EDGE CASES UND SPEZIALFÄLLE =====
+
+# Sehr kurze Antworten
+- story: short responses
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+  - intent: affirm
+  - action: utter_affirm
+  - intent: ask_artist
+    entities:
+    - artist_name: "Leonardo da Vinci"
+  - action: action_fetch_artist
+  - intent: deny
+  - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Mehrfache Dankesäußerungen
+- story: multiple thanks
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Starry Night"
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+  - intent: thanks
+  - action: utter_thanks
+  - intent: ask_recommendation
+  - action: action_recommend_content
+  - intent: thanks
+  - action: utter_thanks
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Wiederholte gleiche Fragen
+- story: repeated same questions
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"  # Gleiche Frage
+  - action: action_fetch_artwork
+  - intent: ask_artwork_details
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# Fallback-Behandlung
+- story: fallback handling
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_fallback
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Van Gogh painting"
+  - action: action_fetch_artwork
+
+# ===== FEHLERBEHANDLUNG UND RECOVERY =====
+
+# Unbekannte Entitäten
+- story: unknown entities recovery
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Some Unknown Painting"
+  - action: action_fetch_artwork  # Sollte "nicht gefunden" handhaben
+  - intent: ask_recommendation
+  - action: action_recommend_content
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Starry Night"  # Bekanntes Werk
+  - action: action_fetch_artwork
+
+# Keine Entitäten erkannt
+- story: no entities recovery
+  steps:
+  - intent: ask_artwork
+  - action: action_fetch_artwork  # Sollte nach Klarstellung fragen
+  - intent: ask_artist
+  - action: action_fetch_artist  # Sollte nach Klarstellung fragen
+  - intent: ask_recommendation
+  - action: action_recommend_content
+
+# Hauptflow: Kunstwerk-Information
+- story: artwork information flow
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+  - intent: ask_artwork_details
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# Kunstwerk-Anfrage mit anschließender Museums-Frage
+- story: artwork then museum location
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "The Starry Night"
+  - action: action_fetch_artwork
+  - intent: ask_location
+    entities:
+    - museum_name: "MoMA"
+  - action: action_fetch_museum_info
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Mehrere Kunstwerk-Anfragen hintereinander
+- story: multiple artworks
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "The Persistence of Memory"
+  - action: action_fetch_artwork
+  - intent: thanks
+  - action: utter_thanks
+
+# ===== KÜNSTLER-BEZOGENE FLOWS =====
+
+# Hauptflow: Künstler-Information
+- story: artist information flow
+  steps:
+  - intent: ask_artist
+    entities:
+    - artist_name: "Vincent van Gogh"
+  - action: action_fetch_artist
+  - intent: ask_artist_bio
+  - action: action_fetch_artist
+  - intent: thanks
+  - action: utter_thanks
+
+# Künstler-Anfrage mit Follow-up Details
+- story: artist with biography details
+  steps:
+  - intent: ask_artist
+    entities:
+    - artist_name: "Pablo Picasso"
+  - action: action_fetch_artist
+  - intent: ask_artist_bio
+  - action: action_fetch_artist
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Guernica"
+  - action: action_fetch_artwork
+  - intent: goodbye
+  - action: utter_goodbye
+
+# ===== MUSEUMS-BEZOGENE FLOWS =====
+
+# Öffnungszeiten-Anfrage
+- story: museum opening hours
+  steps:
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "Louvre"
+    - time_reference: "heute"
+  - action: action_fetch_museum_info
+  - intent: thanks
+  - action: utter_thanks
+
+# Ticketpreis-Anfrage
+- story: museum ticket prices
+  steps:
+  - intent: ask_ticket_price
+    entities:
+    - museum_name: "Van Gogh Museum"
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "Van Gogh Museum"
+  - action: action_fetch_museum_info
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Museums-Standort-Anfrage
+- story: museum location
+  steps:
+  - intent: ask_location
+    entities:
+    - museum_name: "Tate Modern"
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "Tate Modern"
+  - action: action_fetch_museum_info
+  - intent: thanks
+  - action: utter_thanks
+
+# Komplexer Museums-Flow
+- story: complex museum information
+  steps:
+  - intent: ask_museum_info
+    entities:
+    - museum_name: "Rijksmuseum"
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    entities:
+    - museum_name: "Rijksmuseum"
+  - action: action_fetch_museum_info
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "Rijksmuseum"
+  - action: action_fetch_museum_info
+  - intent: thanks
+  - action: utter_thanks
+
+# ===== KOMBINIERTE FLOWS =====
+
+# Kunstwerk → Künstler → Museum Flow
+- story: artwork artist museum flow
+  steps:
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "The Starry Night"
+  - action: action_fetch_artwork
+  - intent: ask_artist
+    entities:
+    - artist_name: "Vincent van Gogh"
+  - action: action_fetch_artist
+  - intent: ask_location
+    entities:
+    - museum_name: "Van Gogh Museum"
+  - action: action_fetch_museum_info
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Umgekehrter Flow: Museum → Kunstwerk → Künstler
+- story: museum artwork artist flow
+  steps:
+  - intent: ask_opening_hours
+    entities:
+    - museum_name: "MET"
+  - action: action_fetch_museum_info
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Washington Crossing the Delaware"
+  - action: action_fetch_artwork
+  - intent: ask_artist
+    entities:
+    - artist_name: "Emanuel Leutze"
+  - action: action_fetch_artist
+  - intent: thanks
+  - action: utter_thanks
+
+# ===== FEHLERBEHANDLUNG UND FALLBACKS =====
+
+# Fallback-Scenario
+- story: fallback scenario
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_fallback
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Mona Lisa"
+  - action: action_fetch_artwork
+
+# Bot-Challenge mit anschließender normaler Konversation
+- story: bot challenge then normal flow
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: ask_artist
+    entities:
+    - artist_name: "Leonardo da Vinci"
+  - action: action_fetch_artist
+  - intent: thanks
+  - action: utter_thanks
+
+# ===== ERWEITERTE SZENARIEN =====
+
+# Lange Konversation mit verschiedenen Themen
+- story: long conversation
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Girl with a Pearl Earring"
+  - action: action_fetch_artwork
+  - intent: ask_artist
+    entities:
+    - artist_name: "Johannes Vermeer"
+  - action: action_fetch_artist
+  - intent: ask_location
+    entities:
+    - museum_name: "Mauritshuis"
+  - action: action_fetch_museum_info
+  - intent: ask_ticket_price
+    entities:
+    - museum_name: "Mauritshuis"
+  - action: action_fetch_museum_info
+  - intent: thanks
+  - action: utter_thanks
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Bestätigung und Verneinung in Konversation
+- story: affirmation and denial
+  steps:
+  - intent: ask_artist
+    entities:
+    - artist_name: "Andy Warhol"
+  - action: action_fetch_artist
+  - intent: affirm
+  - action: utter_affirm
+  - intent: ask_artwork
+    entities:
+    - artwork_name: "Campbell's Soup Cans"
+  - action: action_fetch_artwork
+  - intent: deny
+  - action: utter_deny
+  - intent: goodbye
+  - action: utter_goodbye

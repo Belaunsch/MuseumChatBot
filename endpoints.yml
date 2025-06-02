@@ -1,0 +1,28 @@
+# Endpoints Konfiguration für den Museum Guide Chatbot
+# Diese Datei definiert die Verbindungen zu externen Services
+
+# Action Server Endpoint
+# Der Action Server läuft standardmäßig auf Port 5055
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+
+# Event Broker (optional für Produktionsumgebung)
+# event_broker:
+#   type: pika
+#   url: amqp://localhost
+
+# Model Server (falls externe Model-Server verwendet werden)
+# model_endpoint:
+#   url: "http://localhost:5001"
+
+# Tracker Store (für Produktionsumgebung - Session-Persistierung)
+# tracker_store:
+#   type: sql
+#   dialect: "postgresql"
+#   url: "postgresql://user:password@localhost:5432/rasa"
+#   db: "rasa"
+
+# Lock Store (für Multi-Instance Deployments)
+# lock_store:
+#   type: "redis"
+#   url: "redis://localhost:6379"

@@ -1,0 +1,409 @@
+# NLU Training Data für den Museum Guide Chatbot - UMFANGREICH ERWEITERT
+# Diese Datei enthält Beispiele für alle Intents mit deutschen Phrasen
+# und Regex-Patterns für bessere Entity-Erkennung
+# ERWEITERT: Mehr Variationen, neue Intents, komplexere Szenarien
+
+version: "3.1"
+
+nlu:
+# ===== UMFANGREICH ERWEITERTE KONVERSATIONS-INTENTS =====
+
+# Begrüßung - Erweitert mit mehr Variationen
+- intent: greet
+  examples: |
+    # Formelle Begrüßungen
+    - Hallo
+    - Hi
+    - Hey
+    - Guten Tag
+    - Guten Morgen
+    - Guten Abend
+    - Servus
+    - Moin
+    - Hallo, wie geht's?
+    - Hi Bot
+    - Guten Tag, ich hätte gerne Informationen
+    - Hallo, ich bin hier um etwas über Kunst zu lernen
+    - Guten Morgen, können Sie mir helfen?
+    - Schönen guten Tag
+    
+    # Informelle Begrüßungen
+    - Heyho
+    - Huhu
+    - Na
+    - Hallöchen
+    - Yo
+    - Was geht
+    
+    # Kontextbezogene Begrüßungen
+    - Ich bin neu hier im Museum
+    - Ich brauche einen Museumsführer
+    - Hallo, ich suche Informationen zu Kunstwerken
+    - Hi, kannst du mir bei Kunst helfen?
+
+# Abschied - Erweitert
+- intent: goodbye
+  examples: |
+    - Tschüss
+    - Auf Wiedersehen
+    - Bye
+    - Bis dann
+    - Ciao
+    - Bis bald
+    - Mach's gut
+    - Adieu
+    - Bis später
+    - Ich muss gehen
+    - Vielen Dank und tschüss
+    - Das war's von mir
+    - Ich verabschiede mich
+
+# Dank - Erweitert
+- intent: thanks
+  examples: |
+    - Danke
+    - Vielen Dank
+    - Dankeschön
+    - Merci
+    - Super, danke
+    - Das war hilfreich
+    - Perfekt, vielen Dank
+    - Klasse, danke dir
+    - Toll, ich danke Ihnen
+    - Sehr nett, danke
+
+# Bestätigung - Erweitert
+- intent: affirm
+  examples: |
+    - ja
+    - genau
+    - richtig
+    - korrekt
+    - stimmt
+    - das ist schön
+    - gefällt mir
+    - sehr interessant
+    - das mag ich
+    - cool
+    - toll
+    - beeindruckend
+    - wunderbar
+    - faszinierend
+
+# Verneinung - Erweitert
+- intent: deny
+  examples: |
+    - nein
+    - nee
+    - nicht wirklich
+    - gefällt mir nicht
+    - das ist nichts für mich
+    - langweilig
+    - nicht so interessant
+    - eher nicht
+    - lieber nicht
+    - mag ich nicht
+
+# Bot-Challenge - Erweitert
+- intent: bot_challenge
+  examples: |
+    - Bist du ein Bot?
+    - Bist du echt?
+    - Bist du ein Mensch?
+    - Was bist du?
+    - Bist du künstlich?
+    - Bist du ein Computer?
+    - Bist du eine KI?
+    - Wer bist du?
+    - Was für ein System bist du?
+
+# ===== KUNSTWERK-BEZOGENE INTENTS - ERWEITERT =====
+
+# Kunstwerk-Anfragen - Deutlich erweitert
+- intent: ask_artwork
+  examples: |
+    # Direkte Anfragen
+    - Erzähl mir etwas über [Mona Lisa](artwork_name)
+    - Was weißt du über [The Starry Night](artwork_name)?
+    - Informationen zu [Guernica](artwork_name) bitte
+    - Erzähl mir von [Girl with a Pearl Earring](artwork_name)
+    - Was ist [Der Schrei](artwork_name)?
+    - Zeig mir [American Gothic](artwork_name)
+    - [The Great Wave off Kanagawa](artwork_name) Informationen
+    - [The Persistence of Memory](artwork_name) Informationen
+    - [Las Meninas](artwork_name) Details
+    - [Wheat Field with Cypresses](artwork_name) bitte
+    
+    # Formelle Anfragen
+    - Könnten Sie mir etwas über [Water Lilies](artwork_name) erzählen?
+    - Ich hätte gerne Informationen zu [The Birth of Venus](artwork_name)
+    - Würden Sie mir [The Creation of Adam](artwork_name) erklären?
+    - Können Sie mir Details zu [The Kiss](artwork_name) geben?
+    
+    # Umgangssprache
+    - Was is'n das für'n Bild: [Sunflowers](artwork_name)?
+    - [The Thinker](artwork_name) - kenn ich nicht
+    - Von [Liberty Leading the People](artwork_name) hab ich gehört
+    - [The Last Supper](artwork_name) interessiert mich
+    
+    # Unsichere/Teilweise Namen
+    - Ich suche ein Bild mit Seerosen
+    - Das berühmte Bild von Van Gogh mit den Sternen
+    - Dieses Picasso-Werk über den Krieg
+    - Das Mädchen mit dem Ohrring
+    
+    # Kontextuelle Anfragen
+    - Welches Kunstwerk hängt im Louvre?
+    - Was ist das berühmteste Gemälde der Welt?
+    - Zeig mir etwas von Van Gogh
+    - Ich interessiere mich für Impressionismus
+
+# Kunstwerk-Details - Neu
+- intent: ask_artwork_details
+  examples: |
+    - Wann wurde das gemalt?
+    - Wo hängt das Bild?
+    - Wie groß ist das Gemälde?
+    - In welchem Museum ist das?
+    - Was ist die Geschichte dahinter?
+    - Wie alt ist das Werk?
+    - Wer hat das in Auftrag gegeben?
+
+# Interpretation - Neu
+- intent: ask_interpretation
+  examples: |
+    - Was bedeutet das Bild?
+    - Was will der Künstler damit sagen?
+    - Symbolik in [Guernica](artwork_name)
+    - Was symbolisiert [The Starry Night](artwork_name)?
+    - Bedeutung der Farben in [Water Lilies](artwork_name)
+    - Was stellt [The Scream](artwork_name) dar?
+    - Interpretation von [The Persistence of Memory](artwork_name)
+
+# ===== KÜNSTLER-BEZOGENE INTENTS - ERWEITERT =====
+
+# Künstler-Anfragen - Deutlich erweitert
+- intent: ask_artist
+  examples: |
+    # Direkte Biografien
+    - Wer war [Vincent van Gogh](artist_name)?
+    - Erzähl mir etwas über [Pablo Picasso](artist_name)
+    - [Leonardo da Vinci](artist_name) Biographie
+    - Was weißt du über [Frida Kahlo](artist_name)?
+    - Informationen zu [Claude Monet](artist_name) bitte
+    - [Andy Warhol](artist_name) - wer war das?
+    - [Georgia O'Keeffe](artist_name) Lebenslauf
+    - [Rembrandt](artist_name) Informationen
+    
+    # Lebensdaten
+    - Wann wurde [Frida Kahlo](artist_name) geboren?
+    - Wann ist [Georgia O'Keeffe](artist_name) gestorben?
+    - Wie alt wurde [Van Gogh](artist_name)?
+    - Lebensdaten von [Picasso](artist_name)
+    
+    # Persönlichkeit und Leben
+    - Erzähl mir die Lebensgeschichte von [Vincent van Gogh](artist_name)
+    - Was war [Pablo Picasso](artist_name) für ein Mensch?
+    - Wie war das Leben von [Frida Kahlo](artist_name)?
+    - [Leonardo da Vinci](artist_name) - was für eine Person war das?
+    
+    # Stil-bezogene Fragen  
+    - Welchen Stil hatte [Claude Monet](artist_name)?
+    - [Salvador Dalí](artist_name) - was für Kunst hat er gemacht?
+    - In welcher Richtung malte [Jackson Pollock](artist_name)?
+    - [Georgia O'Keeffe](artist_name) - welche Art von Kunst?
+    
+    # Umgangssprache
+    - [Andy Warhol](artist_name) - wer war'n das?
+    - Von [Michelangelo](artist_name) hab ich schon gehört, aber wer war das?
+    - [Rembrandt](artist_name) kenn ich nicht so gut
+    - [Henri Matisse](artist_name) sagt mir nichts
+    
+    # Vergleichende Fragen
+    - Was unterscheidet [Van Gogh](artist_name) von anderen Malern?
+    - Was macht [Picasso](artist_name) so besonders?
+    - Warum ist [Da Vinci](artist_name) so berühmt?
+    
+    # Mit Tippfehlern (für Robustheit)
+    - Wer war [Rembrandzt](artist_name)?
+    - [Monet](artist_name) oder [Manet](artist_name)?
+    - [Van Gough](artist_name) Informationen
+
+# ===== NEUE WISSENS-INTENTS =====
+
+# Kunstrichtungen und Stile - Neu
+- intent: ask_art_movement
+  examples: |
+    - Was ist Impressionismus?
+    - Erkläre mir Kubismus
+    - Was bedeutet Surrealismus?
+    - Erzähl mir über Expressionismus
+    - Was ist Pop Art?
+    - Renaissance - was war das?
+    - Barock Kunst
+    - Was ist moderne Kunst?
+    - Abstrakte Kunst erklären
+    - Romantik in der Kunst
+    - Realismus in der Malerei
+    - Was ist Fauvismus?
+    - Dadaismus erklären
+    - Klassizismus beschreiben
+
+# Kunsttechniken - Neu
+- intent: ask_art_technique
+  examples: |
+    - Was ist Ölmalerei?
+    - Wie funktioniert Aquarell?
+    - Was bedeutet Tempera?
+    - Erkläre mir Fresko
+    - Was ist eine Radierung?
+    - Wie macht man Skulpturen?
+    - Was ist Collage?
+    - Druckgrafik erklären
+    - Wie funktioniert Lithografie?
+    - Was ist Pastellmalerei?
+    - Acrylmalerei Technik
+    - Wie entstehen Holzschnitte?
+
+# Kunstgeschichte - Neu
+- intent: ask_art_history
+  examples: |
+    - Kunst im Mittelalter
+    - Wie war Kunst in der Renaissance?
+    - Kunst im 20. Jahrhundert
+    - Moderne Kunstgeschichte
+    - Antike Kunst
+    - Kunst der Aufklärung
+    - Kunst im 19. Jahrhundert
+    - Zeitgenössische Kunst
+    - Byzantinische Kunst
+    - Gotische Kunst
+
+# Vergleiche zwischen Künstlern/Werken - Neu
+- intent: ask_comparison
+  examples: |
+    - Unterschied zwischen [Monet](artist_name) und [Manet](artist_name)?
+    - [Van Gogh](artist_name) vs [Gauguin](artist_name)
+    - Was unterscheidet [Picasso](artist_name) von [Braque](artist_name)?
+    - [Michelangelo](artist_name) oder [Leonardo da Vinci](artist_name)?
+    - Vergleich [The Starry Night](artwork_name) mit [Café Terrace at Night](artwork_name)
+    - [Impressionismus] vs [Expressionismus]
+    - [Mona Lisa](artwork_name) und [Girl with a Pearl Earring](artwork_name)
+
+# Empfehlungen - Neu
+- intent: ask_recommendation
+  examples: |
+    - Was sollte ich als nächstes sehen?
+    - Empfiehl mir etwas Ähnliches
+    - Was passt zu Van Gogh?
+    - Zeig mir mehr Impressionismus
+    - Ähnliche Künstler wie Picasso
+    - Was könnte mir noch gefallen?
+    - Weitere interessante Werke
+    - Was ist sehenswert?
+
+# Zeitperioden - Neu
+- intent: ask_time_period
+  examples: |
+    - Kunst aus dem 15. Jahrhundert
+    - Was gab es 1800 für Kunst?
+    - Renaissance Periode
+    - Mittelalterliche Kunst
+    - Kunst der 1960er Jahre
+    - 19. Jahrhundert Malerei
+    - Barock Zeit
+    - Moderne Kunst 20. Jahrhundert
+
+# ===== MUSEUMS-BEZOGENE INTENTS - ERWEITERT =====
+
+# Öffnungszeiten - Erweitert
+- intent: ask_opening_hours
+  examples: |
+    - Wann öffnet das [Louvre](museum_name) [heute](time_reference)?
+    - Öffnungszeiten [Van Gogh Museum](museum_name)?
+    - Ist das [Guggenheim Museum](museum_name) [gerade](time_reference) geöffnet?
+    - [MoMA](museum_name) Zeiten
+    - Wie lange hat das [Prado](museum_name) [heute](time_reference) auf?
+    - [Tate Modern](museum_name) öffnungszeiten?
+    - Wann schließt das [Rijksmuseum](museum_name)?
+
+# Eintrittspreise - Erweitert
+- intent: ask_ticket_price
+  examples: |
+    - Wie teuer ist der Eintritt ins [Van Gogh Museum](museum_name)?
+    - Was kostet das [Louvre](museum_name)?
+    - [MoMA](museum_name) Preise
+    - Eintritt [Guggenheim](museum_name)?
+    - Wie viel kostet das [Prado](museum_name)?
+    - [Tate Modern](museum_name) Ticketpreise
+    - Gibt es Ermäßigungen im [Rijksmuseum](museum_name)?
+
+# Standort - Erweitert
+- intent: ask_location
+  examples: |
+    - Wo befindet sich das [MoMA](museum_name)?
+    - Adresse des [British Museum](museum_name)?
+    - Wie komme ich zum [Louvre](museum_name)?
+    - [Van Gogh Museum](museum_name) Lage
+    - Wo ist das [Guggenheim](museum_name)?
+    - [Prado](museum_name) Anfahrt
+    - In welcher Stadt ist das [Rijksmuseum](museum_name)?
+
+# Museum-Informationen - Erweitert
+- intent: ask_museum_info
+  examples: |
+    - Erzähl mir etwas über das [Rijksmuseum](museum_name)
+    - Was gibt es im [Louvre](museum_name) zu sehen?
+    - [Van Gogh Museum](museum_name) Highlights
+    - [MoMA](museum_name) berühmte Werke
+    - Geschichte des [Prado](museum_name)
+    - [Tate Modern](museum_name) Sammlung
+    - Was ist besonders am [Guggenheim](museum_name)?
+
+# Museum-Services - Neu
+- intent: ask_museum_services
+  examples: |
+    - Gibt es Führungen im [Louvre](museum_name)?
+    - Audio-Guide im [Van Gogh Museum](museum_name)?
+    - Café im [MoMA](museum_name)?
+    - Parkplätze am [Guggenheim](museum_name)?
+    - Barrierefreiheit im [Prado](museum_name)?
+    - Garderobe im [Rijksmuseum](museum_name)?
+    - Museumsshop im [Tate Modern](museum_name)?
+
+# ===== ERWEITERTE REGEX PATTERNS =====
+
+# Kunstrichtungen
+- regex: art_movement_regex
+  examples: |
+    - \b(impressionismus|kubismus|surrealismus|expressionismus|pop.art|renaissance|barock|romantik|realismus|abstrakt|modern|fauvismus|dadaismus|klassizismus)\b
+
+# Emotionen und Reaktionen
+- regex: emotion_regex
+  examples: |
+    - \b(schön|hässlich|beeindruckend|langweilig|interessant|faszinierend|verwirrend|verstörend|berührend)\b
+
+# Zeitangaben
+- regex: time_period_regex
+  examples: |
+    - \b(\d{2,4}er?\s?jahre?|\d{1,2}\.\s?jahrhundert|mittelalter|renaissance|barock|romantik|moderne)\b
+
+# Farben
+- regex: color_regex
+  examples: |
+    - \b(rot|blau|grün|gelb|schwarz|weiß|braun|orange|violett|rosa|grau|bunt|farbig)\b
+
+# Gefühle/Bewertungen  
+- regex: feeling_regex
+  examples: |
+    - \b(liebe|hasse|mag|gefällt|beeindruckt|verwirrt|inspiriert|berührt|bewegt)\b
+
+# Künstlernamen (zur besseren Erkennung)
+- regex: artist_name_regex
+  examples: |
+    - \b(van\s+gogh|da\s+vinci|o'keeffe|de\s+kooning|el\s+greco|toulouse.lautrec)\b
+
+# Museen (zur besseren Erkennung)
+- regex: museum_regex
+  examples: |
+    - \b(louvre|moma|guggenheim|prado|tate|rijksmuseum|british\s+museum|hermitage|uffizi)\b

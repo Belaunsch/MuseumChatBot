@@ -1,0 +1,77 @@
+# Rasa NLU und Core Konfiguration für den Museum Guide Chatbot
+# Diese Datei definiert die Machine Learning Pipeline für Sprachverständnis und Dialog-Management
+
+version: "3.1"
+
+# Sprache des Chatbots (Deutsch)
+language: de
+
+# NLU Pipeline: Verarbeitung natürlicher Sprache
+# Pipeline für deutsche Sprache optimiert
+pipeline:
+  # Tokenization: Zerlegung von Sätzen in Tokens
+  - name: WhitespaceTokenizer
+  
+  # RegexFeaturizer: Erkennung von Mustern (Öffnungszeiten, Preise, etc.)
+  - name: RegexFeaturizer
+  
+  # LexicalSyntacticFeaturizer: Sprachliche Features für deutsche Sprache
+  - name: LexicalSyntacticFeaturizer
+  
+  # CountVectorsFeaturizer: Wort-Häufigkeiten als Features
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  
+  # DIETClassifier: Hauptklassifikator für Intents und Entities
+  - name: DIETClassifier
+    epochs: 200
+    constrain_similarities: true
+    model_confidence: softmax
+    entity_recognition: true
+    # Enhanced settings for comprehensive training data
+    batch_size: 64
+    num_transformer_layers: 2
+    transformer_size: 256
+    use_masked_language_model: true
+  
+  # EntitySynonymMapper: Normalisierung von Entity-Varianten
+  - name: EntitySynonymMapper
+  
+  # ResponseSelector: Für direkte Bot-Antworten (falls verwendet)
+  - name: ResponseSelector
+    epochs: 200
+    constrain_similarities: true
+    model_confidence: softmax
+    # Enhanced settings for comprehensive responses
+    batch_size: 64
+    num_transformer_layers: 2
+
+# Policies: Dialog-Management Strategien
+policies:
+  # RulePolicy: Für einfache, regelbasierte Dialoge (Begrüßung, Abschied)
+  - name: RulePolicy
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True
+  
+  # MemoizationPolicy: Merkt sich bekannte Gesprächsverläufe
+  - name: MemoizationPolicy
+    max_history: 8
+  
+  # TEDPolicy: Neural Network für komplexe Dialoge
+  - name: TEDPolicy
+    max_history: 8
+    epochs: 200
+    constrain_similarities: true
+    model_confidence: softmax
+    split_entities_by_comma: false
+    # Enhanced settings for complex conversation flows
+    batch_size: 64
+    hidden_layers_sizes:
+      text: [256, 128]
+      label: [256, 128]
+
+# Assistant ID für Tracking
+assistant_id: museum_guide_bot

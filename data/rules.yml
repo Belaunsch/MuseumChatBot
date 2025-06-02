@@ -1,0 +1,74 @@
+# Rules: Definiert einfache, regelbasierte Dialoge
+# Rules werden immer angewendet, unabhängig vom Konversationskontext
+
+version: "3.1"
+
+rules:
+
+# ===== GRUNDLEGENDE KONVERSATIONS-REGELN =====
+
+# Begrüßung wird immer mit Begrüßung beantwortet
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# Dank wird immer mit Dank-Antwort beantwortet
+- rule: Say thanks anytime the user says thanks
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+
+# Bot-Challenge wird immer beantwortet
+- rule: Answer bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+
+# ===== FALLBACK-REGELN =====
+
+# Fallback-Regel für unverstandene Nachrichten
+- rule: Implementation of the Fallback
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_fallback
+
+# ===== BESTÄTIGUNG UND VERNEINUNG =====
+
+# Bestätigung wird immer bestätigt
+- rule: Handle affirmation
+  steps:
+  - intent: affirm
+  - action: utter_affirm
+
+# Verneinung wird immer bestätigt  
+- rule: Handle denial
+  steps:
+  - intent: deny
+  - action: utter_deny
+
+# ===== AKTIVIERUNG VON FORMULAREN (falls später verwendet) =====
+
+# Diese Regeln können für zukünftige Formulare verwendet werden
+# Beispiel: Wenn ein Nutzer nach einem Kunstwerk fragt, aber keinen Namen angibt
+
+# ===== SESSION-START =====
+
+# Session-Start Regel
+- rule: Session start
+  steps:
+  - intent: session_start
+  - action: action_session_start
+
+# ===== FEHLERBEHANDLUNG =====
+
+# Diese Rules wurden entfernt, da sie mit den Stories in Konflikt stehen.
+# Die Behandlung fehlender Entities erfolgt direkt in den Custom Actions.
+
+# Alternative: Formulare für komplexe Entity-Sammlung könnten hier definiert werden
+# Beispiel für zukünftige Erweiterungen:
+# - rule: Activate artwork form
+#   steps:
+#   - intent: ask_artwork
+#   - action: artwork_form
+#   - active_loop: artwork_form

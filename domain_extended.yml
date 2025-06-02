@@ -1,0 +1,209 @@
+# Erweiterte Domain-Konfiguration für umfangreicheres Training
+version: "3.1"
+
+# ===== ERWEITERTE INTENTS =====
+intents:
+  # Grundlegende Konversations-Intents
+  - greet
+  - goodbye  
+  - thanks
+  - affirm
+  - deny
+  - bot_challenge
+  
+  # Kunstwerk-bezogene Intents
+  - ask_artwork
+  - ask_artwork_details
+  - ask_interpretation     # NEU: "Was bedeutet dieses Bild?"
+  
+  # Künstler-bezogene Intents  
+  - ask_artist
+  - ask_artist_bio
+  
+  # Museums-bezogene Intents
+  - ask_opening_hours
+  - ask_ticket_price
+  - ask_location
+  - ask_museum_info
+  - ask_museum_services    # NEU: "Gibt es Führungen?"
+  
+  # Neue Wissens-Intents
+  - ask_art_movement       # NEU: "Was ist Impressionismus?"
+  - ask_art_technique      # NEU: "Was ist Ölmalerei?"
+  - ask_art_history        # NEU: "Kunst im 19. Jahrhundert"
+  - ask_comparison         # NEU: "Unterschied zwischen Monet und Manet"
+  - ask_recommendation     # NEU: "Was sollte ich als nächstes sehen?"
+  - ask_time_period        # NEU: "Kunst aus dem 15. Jahrhundert"
+  
+  # Fallback Intent
+  - nlu_fallback
+
+# ===== ERWEITERTE ENTITIES =====
+entities:
+  - artwork_name
+  - artist_name  
+  - museum_name
+  - time_reference
+  - info_type
+  - art_movement          # NEU: Impressionismus, Kubismus, etc.
+  - art_technique         # NEU: Ölmalerei, Aquarell, etc.
+  - time_period           # NEU: Renaissance, 19. Jahrhundert, etc.
+  - color                 # NEU: rot, blau, etc.
+  - emotion               # NEU: schön, beeindruckend, etc.
+
+# ===== ERWEITERTE SLOTS =====
+slots:
+  # Bestehende Slots
+  artwork_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: artwork_name
+    influence_conversation: true
+  
+  artist_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: artist_name
+    influence_conversation: true
+  
+  museum_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: museum_name
+    influence_conversation: true
+  
+  time_reference:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: time_reference
+    influence_conversation: false
+  
+  # Neue Slots für erweiterte Funktionalität
+  art_movement:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: art_movement
+    influence_conversation: true
+  
+  art_technique:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: art_technique
+    influence_conversation: true
+  
+  time_period:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: time_period
+    influence_conversation: true
+  
+  last_artwork:
+    type: text
+    mappings:
+    - type: custom
+    influence_conversation: true
+  
+  last_artist:
+    type: text
+    mappings:
+    - type: custom
+    influence_conversation: true
+  
+  user_preference:
+    type: text
+    mappings:
+    - type: custom
+    influence_conversation: true
+  
+  conversation_context:
+    type: text
+    mappings:
+    - type: custom
+    influence_conversation: true
+
+# ===== ERWEITERTE RESPONSES =====
+responses:
+  # Bestehende Responses
+  utter_greet:
+  - text: "Hallo! Ich bin Ihr persönlicher Museumsführer. Wie kann ich Ihnen heute helfen?"
+  - text: "Willkommen! Ich freue mich, Ihnen bei Fragen zu Kunst und Museen zu helfen."
+  - text: "Guten Tag! Lassen Sie uns gemeinsam die Welt der Kunst erkunden."
+
+  utter_goodbye:
+  - text: "Auf Wiedersehen! Ich hoffe, ich konnte Ihnen bei Ihrem Museumsbesuch helfen."
+  - text: "Bis bald! Kommen Sie gerne wieder, wenn Sie mehr über Kunst erfahren möchten."
+  - text: "Tschüss! Es war mir eine Freude, Sie durch die Kunstwelt zu führen."
+
+  utter_thanks:
+  - text: "Gerne geschehen! Gibt es noch etwas anderes, wobei ich helfen kann?"
+  - text: "Sehr gerne! Ich bin da, wenn Sie weitere Fragen haben."
+  - text: "Kein Problem! Lassen Sie mich wissen, wenn Sie mehr wissen möchten."
+
+  utter_affirm:
+  - text: "Das freut mich! Möchten Sie mehr darüber erfahren?"
+  - text: "Schön! Gibt es noch etwas Bestimmtes, was Sie interessiert?"
+  - text: "Wunderbar! Soll ich Ihnen ähnliche Werke empfehlen?"
+
+  utter_deny:
+  - text: "Verstehe. Lassen Sie mich etwas anderes vorschlagen."
+  - text: "Kein Problem. Möchten Sie etwas anderes erkunden?"
+  - text: "Das ist in Ordnung. Vielleicht interessiert Sie etwas anderes?"
+
+  utter_bot_challenge:
+  - text: "Ich bin ein AI-Museumsführer, der Ihnen gerne bei Fragen zu Kunst und Museen hilft!"
+  - text: "Ja, ich bin ein Bot! Aber ein sehr kunstbegeisterter Bot, der Ihnen gerne weiterhilft."
+  - text: "Richtig, ich bin ein künstlicher Assistent für Kunstfragen. Wie kann ich Ihnen helfen?"
+
+  # Neue Responses für erweiterte Funktionalität
+  utter_ask_for_clarification:
+  - text: "Das habe ich nicht ganz verstanden. Können Sie das anders formulieren?"
+  - text: "Entschuldigung, können Sie mir das nochmal erklären?"
+  - text: "Ich bin mir nicht sicher, was Sie meinen. Können Sie es anders sagen?"
+
+  utter_not_found:
+  - text: "Leider konnte ich dazu keine Informationen finden. Kann ich Ihnen mit etwas anderem helfen?"
+  - text: "Das ist mir unbekannt. Möchten Sie nach etwas anderem suchen?"
+  - text: "Dazu habe ich leider keine Daten. Soll ich Ihnen etwas Ähnliches vorschlagen?"
+
+  utter_multiple_options:
+  - text: "Ich habe mehrere Möglichkeiten gefunden. Welche interessiert Sie am meisten?"
+  - text: "Es gibt verschiedene Optionen. Auf welche soll ich näher eingehen?"
+  - text: "Da gibt es mehrere Varianten. Welche möchten Sie zuerst erkunden?"
+
+  utter_encourage_exploration:
+  - text: "Sehr interessant! Möchten Sie tiefer in dieses Thema eintauchen?"
+  - text: "Das ist faszinierend! Soll ich Ihnen mehr darüber erzählen?"
+  - text: "Ein spannendes Thema! Gibt es bestimmte Aspekte, die Sie besonders interessieren?"
+
+  utter_context_switch:
+  - text: "Gerne wechseln wir das Thema! Worum geht es denn?"
+  - text: "Kein Problem, lassen Sie uns über etwas anderes sprechen."
+  - text: "Natürlich! Was möchten Sie stattdessen wissen?"
+
+# ===== ERWEITERTE ACTIONS =====
+actions:
+  # Bestehende Actions
+  - action_fetch_artwork
+  - action_fetch_artist
+  - action_fetch_museum_info
+  - action_default_fallback
+  
+  # Neue Actions für erweiterte Funktionalität
+  - action_fetch_art_info        # Für Kunstrichtungen, Techniken, Geschichte
+  - action_recommend_content     # Für Empfehlungen basierend auf Kontext
+  - action_compare_artworks      # Für Vergleiche zwischen Werken/Künstlern
+  - action_save_user_preference  # Für das Speichern von Nutzerpräferenzen
+  - action_provide_context       # Für kontextbezogene Zusatzinfos
+  - action_handle_complex_query  # Für komplexe, mehrschichtige Anfragen
+
+# ===== SESSION-KONFIGURATION =====
+session_config:
+  session_expiration_time: 60    # 60 Minuten
+  carry_over_slots_to_new_session: true

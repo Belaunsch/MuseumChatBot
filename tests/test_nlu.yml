@@ -1,0 +1,154 @@
+# NLU Test Data für den Museum Guide Chatbot
+# Diese Datei dient zur Evaluation der Intent-Klassifikation und Entity-Extraktion
+
+version: "3.1"
+
+nlu:
+# ===== KUNSTWERK-BEZOGENE TESTS (10 Beispiele) =====
+
+- intent: ask_artwork
+  examples: |
+    - Erzähl mir etwas über [The Starry Night](artwork_name)
+    - Welche Informationen hast du zu [Guernica](artwork_name)?
+    - Wann wurde [Girl with a Pearl Earring](artwork_name) gemalt?
+    - Was ist die Geschichte hinter [Das Mädchen mit dem Perlenohrring](artwork_name)?
+    - Wer hat [Die Erschaffung Adams](artwork_name) gemalt?
+    - Zeig mir Details zu [American Gothic](artwork_name)
+    - Was weißt du über [The Persistence of Memory](artwork_name)?
+    - Informationen über [Der Schrei](artwork_name) bitte
+    - Erzähl mir von [Las Meninas](artwork_name)
+    - Details zu [The Great Wave off Kanagawa](artwork_name)
+
+# ===== KÜNSTLER-BEZOGENE TESTS (10 Beispiele) =====
+
+- intent: ask_artist
+  examples: |
+    - Wer war [Claude Monet](artist_name)?
+    - Wann wurde [Frida Kahlo](artist_name) geboren?
+    - Wo wurde [Salvador Dalí](artist_name) geboren?
+    - Wann ist [Georgia O'Keeffe](artist_name) gestorben?
+    - Gib mir Infos zu [Käthe Kollwitz](artist_name)
+    - Erzähl mir etwas über [Johannes Vermeer](artist_name)
+    - Was weißt du über [Henri Matisse](artist_name)?
+    - Wer ist [Jackson Pollock](artist_name)?
+    - Informationen zu [Auguste Renoir](artist_name) bitte
+    - Details über [Andy Warhol](artist_name)
+
+# ===== BIOGRAFISCHE DETAILS (5 Beispiele) =====
+
+- intent: ask_artist_bio
+  examples: |
+    - Wann wurde er geboren?
+    - Wann ist sie gestorben?
+    - Wo wurde der Künstler geboren?
+    - Aus welchem Land kommt sie?
+    - Welche Nationalität hatte er?
+
+# ===== ÖFFNUNGSZEITEN-TESTS (5 Beispiele) =====
+
+- intent: ask_opening_hours
+  examples: |
+    - Wann öffnet das [Louvre](museum_name) [heute](time_reference)?
+    - Öffnungszeiten vom [Prado](museum_name) [morgen](time_reference)?
+    - Ist das [Guggenheim Museum](museum_name) [gerade](time_reference) geöffnet?
+    - Öffnungszeiten [Hamburger Bahnhof](museum_name)?
+    - Wann macht das [Kunsthistorische Museum Wien](museum_name) zu?
+
+# ===== TICKETPREIS-TESTS (3 Beispiele) =====
+
+- intent: ask_ticket_price
+  examples: |
+    - Wie viel kostet der Eintritt ins [Van Gogh Museum](museum_name)?
+    - Ticketpreise für das [Van Gogh Museum Amsterdam](museum_name)?
+    - Was kostet eine Karte für das [MoMA](museum_name)?
+
+# ===== STANDORT-TESTS (2 Beispiele) =====
+
+- intent: ask_location
+  examples: |
+    - Wo befindet sich das [Tate Modern](museum_name)?
+    - Adresse des [British Museum](museum_name)?
+
+# ===== GRUNDLEGENDE KONVERSATION (8 Beispiele) =====
+
+- intent: greet
+  examples: |
+    - Hallo
+    - Hi da
+
+- intent: thanks
+  examples: |
+    - Danke dir
+    - Vielen Dank
+
+- intent: goodbye
+  examples: |
+    - Tschüss
+    - Bis dann
+
+- intent: affirm
+  examples: |
+    - Ja genau
+    - Das stimmt
+
+- intent: deny
+  examples: |
+    - Nein
+    - Falsch
+
+- intent: bot_challenge
+  examples: |
+    - Bist du ein Bot?
+    - Was bist du?
+
+# ===== FALLBACK-TESTS (2 Beispiele) =====
+
+- intent: nlu_fallback
+  examples: |
+    - Das ist völlig unverständlich xyz123
+    - Blablabla nonsense text
+
+# ===== ARTWORK DETAILS TESTS (3 Beispiele) =====
+
+- intent: ask_artwork_details
+  examples: |
+    - Wann wurde das gemalt?
+    - Wer hat das geschaffen?
+    - Welche Technik wurde verwendet?
+
+# ===== MUSEUM INFO TESTS (2 Beispiele) =====
+
+- intent: ask_museum_info
+  examples: |
+    - Erzähl mir etwas über das [Rijksmuseum](museum_name)
+    - Was gibt es im [Louvre](museum_name) zu sehen?
+
+# ===== KOMPLEXE ANFRAGEN (5 Beispiele) =====
+
+- intent: ask_artwork
+  examples: |
+    - Ich suche Informationen über das berühmte Gemälde [Mona Lisa](artwork_name) von Leonardo
+    - Kannst du mir etwas über [Wheat Field with Cypresses](artwork_name) erzählen?
+    - Was weißt du über [The Kiss](artwork_name) von Gustav Klimt?
+    - Informationen zu [A Sunday on La Grande Jatte](artwork_name) bitte
+    - Details über [Liberty Leading the People](artwork_name)
+
+# ===== ENTITY-VARIATIONEN (5 Beispiele) =====
+
+- intent: ask_artist
+  examples: |
+    - [Van Gogh](artist_name) Biografie
+    - Lebensdaten von [Picasso](artist_name)
+    - [Leonardo](artist_name) Informationen
+    - [Michelangelo Buonarroti](artist_name) Details
+    - [da Vinci](artist_name) Fakten
+
+# ===== DEUTSCHE VARIATIONEN (5 Beispiele) =====
+
+- intent: ask_opening_hours
+  examples: |
+    - Hat das [Museum für Kunst](museum_name) [heute](time_reference) auf?
+    - Ist das [Deutsche Museum](museum_name) [jetzt](time_reference) geöffnet?
+    - Wie lange hat das [Städel Museum](museum_name) [heute](time_reference) offen?
+    - Schließzeiten [Alte Pinakothek](museum_name)?
+    - [Neue Nationalgalerie](museum_name) Öffnungszeiten [morgen](time_reference)?

@@ -1,0 +1,207 @@
+# Erweiterte NLU-Trainingsdaten mit mehr Variationen und neuen Intents
+version: "3.1"
+
+nlu:
+
+# ===== ERWEITERTE BEGRÜSSUNGEN =====
+- intent: greet
+  examples: |
+    # Formelle Begrüßungen
+    - Guten Tag, ich hätte gerne Informationen
+    - Hallo, ich bin hier um etwas über Kunst zu lernen
+    - Guten Morgen, können Sie mir helfen?
+    - Schönen guten Tag
+    
+    # Informelle Begrüßungen
+    - Heyho
+    - Huhu
+    - Na
+    - Hallöchen
+    - Yo
+    - Was geht
+    
+    # Kontextbezogene Begrüßungen
+    - Ich bin neu hier im Museum
+    - Ich brauche einen Museumsführer
+    - Hallo, ich suche Informationen zu Kunstwerken
+    - Hi, kannst du mir bei Kunst helfen?
+
+# ===== ERWEITERTE KUNSTWERK-ANFRAGEN =====
+- intent: ask_artwork
+  examples: |
+    # Direkte Fragen
+    - [Mona Lisa](artwork_name) - was ist das?
+    - Ich kenne [Guernica](artwork_name) nicht
+    - Noch nie von [The Scream](artwork_name) gehört
+    - [Starry Night](artwork_name) ist mir unbekannt
+    
+    # Umgangssprache
+    - Was ist denn [Girl with a Pearl Earring](artwork_name)?
+    - Kannste mir was zu [The Last Supper](artwork_name) sagen?
+    - [Las Meninas](artwork_name) - kenn ich nicht
+    - Was'n das für ein Bild: [American Gothic](artwork_name)?
+    
+    # Formelle Anfragen
+    - Ich würde gerne mehr über [The Birth of Venus](artwork_name) erfahren
+    - Könnten Sie mir bitte Informationen zu [The Creation of Adam](artwork_name) geben?
+    - Ich interessiere mich für [Water Lilies](artwork_name)
+    - Hätten Sie Details zu [The Thinker](artwork_name)?
+    
+    # Teilweise/unsichere Namen
+    - Das Bild mit der Frau und dem Perlenohrring
+    - Das berühmte Gemälde von van Gogh mit den Sternen
+    - Dieses Picasso-Bild über den Krieg
+    - Das Selbstportrait von Frida Kahlo
+    - Der David von Michelangelo
+    
+    # Mit Kontext
+    - Was ist das berühmteste Werk von Leonardo?
+    - Zeig mir das Hauptwerk von Picasso
+    - Welches ist van Goghs bekanntestes Gemälde?
+    - Das wichtigste Bild von Monet
+
+# ===== ERWEITERTE KÜNSTLER-ANFRAGEN =====
+- intent: ask_artist
+  examples: |
+    # Biografische Fragen
+    - Erzähl mir die Lebensgeschichte von [Vincent van Gogh](artist_name)
+    - Was war [Pablo Picasso](artist_name) für ein Mensch?
+    - Wie war das Leben von [Frida Kahlo](artist_name)?
+    - [Leonardo da Vinci](artist_name) - was für eine Person war das?
+    
+    # Stil-bezogene Fragen  
+    - Welchen Stil hatte [Claude Monet](artist_name)?
+    - [Salvador Dalí](artist_name) - was für Kunst hat er gemacht?
+    - In welcher Richtung malte [Jackson Pollock](artist_name)?
+    - [Georgia O'Keeffe](artist_name) - welche Art von Kunst?
+    
+    # Umgangssprache
+    - [Andy Warhol](artist_name) - wer war'n das?
+    - Von [Michelangelo](artist_name) hab ich schon gehört, aber wer war das?
+    - [Rembrandt](artist_name) kenn ich nicht so gut
+    - [Henri Matisse](artist_name) sagt mir nichts
+    
+    # Vergleichende Fragen
+    - Was unterscheidet [Van Gogh](artist_name) von anderen Malern?
+    - Was macht [Picasso](artist_name) so besonders?
+    - Warum ist [Da Vinci](artist_name) so berühmt?
+
+# ===== NEUE INTENTS =====
+
+# Kunstrichtungen und Stile
+- intent: ask_art_movement
+  examples: |
+    - Was ist Impressionismus?
+    - Erkläre mir Kubismus
+    - Was bedeutet Surrealismus?
+    - Erzähl mir über Expressionismus
+    - Was ist Pop Art?
+    - Renaissance - was war das?
+    - Barock Kunst
+    - Was ist moderne Kunst?
+    - Abstrakte Kunst erklären
+    - Romantik in der Kunst
+
+# Kunsttechniken
+- intent: ask_art_technique
+  examples: |
+    - Was ist Ölmalerei?
+    - Wie funktioniert Aquarell?
+    - Was bedeutet Tempera?
+    - Erkläre mir Fresko
+    - Was ist eine Radierung?
+    - Wie macht man Skulpturen?
+    - Was ist Collage?
+    - Druckgrafik erklären
+    - Wie funktioniert Lithografie?
+
+# Kunstgeschichte
+- intent: ask_art_history
+  examples: |
+    - Kunst im Mittelalter
+    - Wie war Kunst in der Renaissance?
+    - Kunst im 20. Jahrhundert
+    - Moderne Kunstgeschichte
+    - Antike Kunst
+    - Kunst der Aufklärung
+    - Kunst im 19. Jahrhundert
+    - Zeitgenössische Kunst
+
+# Vergleiche zwischen Künstlern/Werken
+- intent: ask_comparison
+  examples: |
+    - Unterschied zwischen [Monet](artist_name) und [Manet](artist_name)?
+    - [Mona Lisa](artwork_name) vs [Girl with a Pearl Earring](artwork_name)
+    - Was ist ähnlich zwischen [Picasso](artist_name) und [Braque](artist_name)?
+    - Vergleiche [Van Gogh](artist_name) mit [Gauguin](artist_name)
+    - [Starry Night](artwork_name) und [Café Terrace at Night](artwork_name) - Unterschiede?
+
+# Empfehlungen
+- intent: ask_recommendation
+  examples: |
+    - Was sollte ich als nächstes anschauen?
+    - Empfiehl mir ein Kunstwerk
+    - Welchen Künstler soll ich mir ansehen?
+    - Was ist ähnlich wie [Mona Lisa](artwork_name)?
+    - Weitere Werke von [Van Gogh](artist_name)?
+    - Wenn mir [Impressionismus] gefällt, was dann?
+
+# Kunstwerk-Interpretation
+- intent: ask_interpretation
+  examples: |
+    - Was bedeutet [Guernica](artwork_name)?
+    - Symbolik in [The Starry Night](artwork_name)
+    - Was will der Künstler damit sagen?
+    - Interpretation von [The Persistence of Memory](artwork_name)
+    - Bedeutung der Farben in [Water Lilies](artwork_name)
+    - Was symbolisiert [The Scream](artwork_name)?
+
+# Komplexe Museums-Anfragen
+- intent: ask_museum_services
+  examples: |
+    - Gibt es Führungen im [Louvre](museum_name)?
+    - Audio-Guide im [Van Gogh Museum](museum_name)?
+    - Café im [MoMA](museum_name)?
+    - Parkplätze am [Guggenheim](museum_name)?
+    - Barrierefreiheit im [Prado](museum_name)?
+    - Garderobe im [Rijksmuseum](museum_name)?
+    - Museumsshop im [Tate Modern](museum_name)?
+
+# Zeitperioden-bezogene Fragen
+- intent: ask_time_period
+  examples: |
+    - Kunst aus dem 15. Jahrhundert
+    - Was gab es 1800 für Kunst?
+    - Renaissance Periode
+    - Mittelalterliche Kunst
+    - Kunst der 1960er Jahre
+    - 19. Jahrhundert Malerei
+    - Barock Zeit
+    - Moderne Kunst 20. Jahrhundert
+
+# ===== ERWEITERTE REGEX PATTERNS =====
+
+# Kunstrichtungen
+- regex: art_movement_regex
+  examples: |
+    - \b(impressionismus|kubismus|surrealismus|expressionismus|pop.art|renaissance|barock|romantik|realismus|abstrakt|modern)\b
+
+# Emotionen und Reaktionen
+- regex: emotion_regex
+  examples: |
+    - \b(schön|hässlich|beeindruckend|langweilig|interessant|faszinierend|verwirrend|verstörend|berührend)\b
+
+# Zeitangaben
+- regex: time_period_regex
+  examples: |
+    - \b(\d{2,4}er?\s?jahre?|\d{1,2}\.\s?jahrhundert|mittelalter|renaissance|barock|romantik|moderne)\b
+
+# Farben
+- regex: color_regex
+  examples: |
+    - \b(rot|blau|grün|gelb|schwarz|weiß|braun|orange|violett|rosa|grau|bunt|farbig)\b
+
+# Gefühle/Bewertungen  
+- regex: feeling_regex
+  examples: |
+    - \b(liebe|hasse|mag|gefällt|beeindruckt|verwirrt|inspiriert|berührt|bewegt)\b
